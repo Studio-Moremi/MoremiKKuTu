@@ -1,3 +1,7 @@
+/**
+* Rule the words! KKuTu Online
+* Copyright (C) 2024~ Studio Moremi(op@kkutu.store)
+**/
 const { clientId, clientSecret } = require("../auth.json");
 
 function discordLogin(req, res) {

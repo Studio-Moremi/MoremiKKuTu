@@ -1,7 +1,40 @@
+//
+ * Rule the words! KKuTu Online
+ * Copyright (C) 2024~ Studio Moremi(op@kkutu.store)doctype html
 doctype html
 html
   head
-    title= title
+    title 어드민 페이지
+    link(rel="stylesheet" href="/styles.css")
   body
     h1 어드민 페이지
     p 여기에 관리자용 기능을 추가하세요(개발중).
+
+    h2 사용자 관리
+    form(method="POST" action="/admin/search")
+      label(for="user_id") 사용자 ID:
+      input(type="text" id="user_id" name="user_id" placeholder="discord-사용자아이디")
+      button(type="submit") 조회
+
+    if user
+      h3 사용자 정보
+      form(method="POST" action="/admin/update")
+        input(type="hidden" name="user_id" value=user.user_id)
+        label(for="nickname") 닉네임:
+        input(type="text" id="nickname" name="nickname" value=user.nickname)
+        br
+
+        label(for="mileage") 마일리지:
+        input(type="number" id="mileage" name="mileage" value=user.mileage)
+        br
+
+        label(for="experience") 경험치:
+        input(type="number" id="experience" name="experience" value=user.experience)
+        br
+
+        p 레벨 공식: 경험치 ^ 1.5
+        p 현재 레벨: #{Math.floor(Math.pow(user.experience, 1.5))}
+
+        button(type="submit") 수정
+    else
+      p 사용자 정보가 없습니다.

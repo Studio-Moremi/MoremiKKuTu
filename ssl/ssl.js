@@ -1,3 +1,7 @@
+/**
+* Rule the words! KKuTu Online
+* Copyright (C) 2024~ Studio Moremi(op@kkutu.store)
+**/
 const fs = require("fs");
 const https = require("https");
 const sslConfig = require("./ssl.json");

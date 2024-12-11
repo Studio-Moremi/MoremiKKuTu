@@ -1,3 +1,7 @@
+/**
+* Rule the words! KKuTu Online
+* Copyright (C) 2024~ Studio Moremi(op@kkutu.store)
+**/
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 
@@ -21,5 +25,17 @@ db.serialize(() => {
     )
   `);
 });
+
+async function getUser(user_id) {
+    const query = `SELECT user_id, nickname, mileage, experience FROM users WHERE user_id = ?`;
+    const result = await db.get(query, [user_id]);
+    return result || null;
+  }
+  
+  async function updateUser(user_id, { nickname, mileage, experience }) {
+    const query = `UPDATE users SET nickname = ?, mileage = ?, experience = ? WHERE user_id = ?`;
+    await db.run(query, [nickname, mileage, experience, user_id]);
+  }
+  
 
 module.exports = db;
