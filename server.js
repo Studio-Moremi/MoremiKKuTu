@@ -26,17 +26,17 @@ app.get("/game", (req, res) => {
   });
 
 app.get("/admin", (req, res) => {
-  const adminPassword = "test";
+  const adminPassword = "test"; // 비밀번호는 test이다. 변경할려면 adminPassword를 바꾸면 된다.
   if (req.query.password === adminPassword) {
     res.render("admin", { title: "어드민 페이지" });
   } else {
-    res.status(403).send("비밀번호가 틀렸습니다.");
+    res.status(403).send("비밀번호가 틀렸습니다. 관리자 페이지는 스튜디오 모레미 모레미끄투 운영팀만 들어갈 수 있어요.");
   }
 });
 
 app.post("/admin/search", async (req, res) => {
     const { user_id } = req.body;
-    const user = await db.getUser(user_id); // DB에서 사용자 데이터 가져오기
+    const user = await db.getUser(user_id);
   
     res.render("admin", { title: "어드민 페이지", user });
   });
@@ -44,10 +44,9 @@ app.post("/admin/search", async (req, res) => {
   app.post("/admin/update", async (req, res) => {
     const { user_id, nickname, mileage, experience } = req.body;
   
-    // 사용자 정보 업데이트
     await db.updateUser(user_id, { nickname, mileage, experience });
   
-    res.redirect("/admin"); // 수정 후 어드민 페이지로 이동
+    res.redirect("/admin");
   });
   
 

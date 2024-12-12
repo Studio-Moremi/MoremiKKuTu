@@ -1,59 +1,108 @@
-/* styles/game.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles */
 #game-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-  
-  #header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #4caf50;
-    color: white;
-  }
-  
+  @apply flex flex-col h-screen bg-gray-100 text-gray-900;
+}
+
+#header {
+  @apply flex justify-between items-center p-4 bg-green-500 text-white shadow-md;
+}
+
+#header h1 {
+  @apply text-2xl font-bold;
+}
+
+#main-content {
+  @apply flex flex-grow;
+}
+
+#member-list, #room-info {
+  @apply flex-1 m-4 p-4 bg-white rounded-lg shadow-md border border-gray-200;
+}
+
+#member-list h2, #room-info h2 {
+  @apply text-lg font-semibold mb-4 border-b border-gray-300 pb-2;
+}
+
+#win-rate-graph {
+  @apply w-full h-52 mt-4 bg-gray-50 rounded-lg border border-gray-200 shadow-inner;
+}
+
+#close-game {
+  @apply fixed top-2 right-2 px-4 py-2 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300;
+}
+
+#close-game:hover {
+  @apply transform scale-105 transition-transform duration-200;
+}
+
+#close-game:active {
+  @apply transform scale-95;
+}
+
+#create-room-modal.hidden {
+  @apply hidden;
+}
+
+#create-room-modal {
+  @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg border border-gray-300 z-50;
+}
+
+#create-room-modal h2 {
+  @apply text-xl font-bold mb-4;
+}
+
+#create-room-modal label {
+  @apply block text-gray-700 font-medium mb-2;
+}
+
+#create-room-modal input, #create-room-modal button {
+  @apply w-full px-4 py-2 rounded-md border border-gray-300 mt-2;
+}
+
+#create-room-modal input:focus {
+  @apply outline-none ring-2 ring-green-400;
+}
+
+#create-room-modal button {
+  @apply mt-4 bg-green-500 text-white font-semibold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300;
+}
+
+button {
+  @apply px-4 py-2 rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-200;
+}
+
+button:hover {
+  @apply transform scale-105 transition-transform duration-200;
+}
+
+button:active {
+  @apply transform scale-95;
+}
+
+/* Utility Styles */
+.hidden {
+  @apply hidden;
+}
+
+.text-center {
+  @apply text-center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   #main-content {
-    display: flex;
-    flex: 1;
+    @apply flex-col;
   }
-  
+
   #member-list, #room-info {
-    flex: 1;
-    margin: 10px;
+    @apply mx-4 mb-4;
   }
-  
-  #win-rate-graph {
-    width: 100%;
-    height: 200px;
-  }
-  
+
   #close-game {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background-color: red;
-    color: white;
+    @apply top-2 right-2;
   }
-  
-  #create-room-modal.hidden {
-    display: none;
-  }
-  
-  #create-room-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-  }
-  
-  button {
-    margin: 5px;
-  }
-  
+}

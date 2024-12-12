@@ -1,30 +1,181 @@
+/* Global Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9; /* Subtle light gray background */
+  color: #333; /* Dark gray text for readability */
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6; /* Improved readability */
+}
+
+h1, h2, h3 {
+  color: #222; /* Darker shade for headings */
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  margin-top: 10px;
+}
+
+h3 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+/* Form Styles */
+form {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0; /* Subtle border */
+}
+
+input, button, select {
+  font-size: 16px;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%; /* Full-width for responsiveness */
+  box-sizing: border-box;
+}
+
+input:focus, select:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Green focus glow */
+}
+
+/* Button Styles */
+button {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+button:active {
+  background-color: #3e8e41;
+  transform: scale(1); /* Reset scale on click */
+}
+
+button.secondary {
+  background-color: #2196F3; /* Blue for secondary actions */
+  color: white;
+}
+
+button.secondary:hover {
+  background-color: #1e88e5;
+}
+
+button.secondary:active {
+  background-color: #1976d2;
+}
+
+/* List and Item Styles */
+ul {
+  list-style-type: none; /* Remove default list style */
+  padding: 0;
+}
+
+li {
+  background: #fff;
+  margin: 10px 0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+li:hover {
+  transform: translateX(5px); /* Subtle movement on hover */
+}
+
+/* Header Styles */
+header {
+  background-color: #4CAF50;
+  padding: 15px 20px;
+  color: white;
+  text-align: center;
+  font-size: 1.2em;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Graph Styles */
+#win-rate-graph, #loss-rate-graph {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  margin-top: 20px;
+}
+
+button.toggle-graph {
+  background-color: #FF5722; /* Orange for toggles */
+  color: white;
+}
+
+button.toggle-graph:hover {
+  background-color: #f4511e;
+}
+
+button.toggle-graph:active {
+  background-color: #e64a19;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #777;
+}
+
+footer a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
   }
-  
+
   h1 {
-    color: #333;
+    font-size: 2em;
   }
-  
-  form {
-    margin-bottom: 20px;
+
+  input, button, select {
+    font-size: 14px;
   }
-  
-  input, button {
-    padding: 8px 12px;
-    margin: 5px 0;
-  }
-  
+
   button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 8px 10px;
   }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
+}
