@@ -1,15 +1,21 @@
 {
-    "name": "moremikkutu",
-    "version": "1.0.0",
-    "description": "moremikkutu",
-    "main": "server.js",
-    "scripts": {
-      "start": "node server.js"
-    },
-    "dependencies": {
-      "express": "^4.18.2",
-      "pug": "^3.0.2",
-      "sqlite3": "^5.1.6"
-    }
+  "name": "moremikkutu",
+  "version": "1.0.0",
+  "description": "moremikkutu",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build:css": "npx tailwindcss -i ./styles/game.css -o ./public/css/game.css",
+    "watch:css": "npx tailwindcss -i ./styles/game.css -o ./public/css/game.css --watch"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pug": "^3.0.2",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.3.3"
   }
-  
+}
