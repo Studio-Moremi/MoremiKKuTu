@@ -1,0 +1,104 @@
+/* 공통 스타일 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f5;
+  }
+  
+  /* 커뮤니티 메인 컨테이너 */
+  #community-container {
+    width: 350px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 친구 상태 표시 */
+  .profile-picture {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .status.online {
+    color: green;
+    font-weight: bold;
+  }
+  .status.away {
+    color: orange;
+    font-weight: bold;
+  }
+  .status.dnd {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* 초대 알림 */
+  .invite-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f8ff;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .invite-box button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .invite-box button.reject {
+    background-color: #f44336;
+  }
+  
+  .invite-box button:hover {
+    opacity: 0.8;
+  }
+  
+  /* 채팅 영역 */
+  #chat-box {
+    border: 1px solid #ccc;
+    height: 150px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+    background-color: #fafafa;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .chat-message {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  #chat-input {
+    width: 80%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #send-btn {
+    padding: 5px 10px;
+    border: none;
+    background-color: #2196f3;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #send-btn:hover {
+    background-color: #1976d2;
+  }
+  

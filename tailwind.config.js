@@ -4,6 +4,7 @@ module.exports = {
       './views/**/*.pug',
       './public/**/*.html',
       './public/**/*.js',
+      './public/styles/*.css',
     ],
     theme: {
       extend: {},
