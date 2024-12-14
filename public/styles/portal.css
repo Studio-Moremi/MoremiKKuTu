@@ -1,0 +1,23 @@
+#portal-header {
+  @apply flex justify-between items-center p-4 bg-gray-800 text-white;
+}
+
+#portal-main {
+  @apply p-8 flex flex-col md:flex-row space-y-8 md:space-y-0;
+}
+
+#updates {
+  @apply md:w-2/3 bg-gray-100 p-6 rounded-lg shadow space-y-4 text-gray-700;
+}
+
+#game-start {
+  @apply md:w-1/3 flex flex-col items-center bg-white p-6 rounded-lg shadow;
+}
+
+#portal-footer {
+  @apply bg-gray-900 text-white text-center py-4 text-sm;
+}
+
+#recommendation {
+  @apply text-sm text-gray-500;
+}
