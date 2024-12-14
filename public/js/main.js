@@ -1,8 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const backButton = document.querySelector("#btn-back");
+  if (backButton) {
+    backButton.addEventListener("click", () => {
+      window.location.href = "/";
+    });
+  }
+
   const recommendationBtn = document.querySelector("#btn-recommendation");
   if (recommendationBtn) {
     recommendationBtn.addEventListener("click", () => {
-      alert("공사중");
+      window.location.href = "/recommendation";
     });
   }
 
@@ -13,3 +20,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
