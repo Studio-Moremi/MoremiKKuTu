@@ -1,7 +1,23 @@
+<div align="center>
+		<br	/>
+        <p>
+        		<a href="https://discord.gg/fFZaQ54SGS"><img src="https://img.shields.io/discord/222078108977594368?color=5865F2&logo=discord&logoColor=white alt="디스코드 서버"		/></a>
+        </p>
+</div>
+
 ### made
-- made by Studio Moremi(biduduki(cookedas1), dakkanasi(theseeduse))
+- made by Studio Moremi(biduduki([cookedas1](https://github.com/cookedas1), [dakkanasi](https://github.com/theseeduse))
 - License is MIT.
  - help by DalDalso
+
+### package
+[express](https://github.com/expressjs/express) - 모레미끄투 웹서버
+[pug](https://github.com/pugjs/pug) - pug 페이지용 패키지
+[svelte](https://github.com/sveltejs/svelte) - svelte 페이지용 패키지
+[sqlite3](https://www.sqlite.org) - DB 저장
+[tailwindcss](https://github.com/tailwindlabs/tailwindcss) - 테일윈드 사용
+[postcss](https://github.com/postcss/postcss) - 테일윈드를 동작하기 위한 패키지
+[autoprefixer](https://github.com/postcss/autoprefixer) - autoprefixer 사용을 위한 패키지
 
 # 소개
 **모레미끄투**는 간단하게 끝말잇기를 하는 게임입니다.
