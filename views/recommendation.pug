@@ -1,0 +1,39 @@
+doctype html
+html(lang="ko")
+  head
+    title 권장 사양
+    link(rel="stylesheet", href="/styles/portal.css")
+    script(src="/js/main.js")
+  body
+    #navbar
+      div#logo 모레미끄투
+      if loggedIn
+        div
+          span.nickname #{user.nickname}
+          span.level 레벨: #{user.level}
+          button#logout(onclick="window.location.href='/logout'") 로그아웃
+      else
+        button#login(onclick="window.location.href='/login'") 로그인
+
+    #recommendation-container
+      h1 권장 사양
+      button#btn-back(onclick="window.location.href='/'") 돌아가기
+      p 모레미끄투는 아래 필수 사양을 따라야지 작동이 가능합니다.
+
+      h2 필수 사양
+      ul
+        li RAM: 2GB
+        li SSD: 5GB
+
+      h2 권장 사양
+      ul
+        li RAM: 4GB
+        li SSD: 10GB
+
+      h2 웹 서버를 사용한 게임 이용
+      ul
+        li 필수 RAM: 1GB
+        li 권장 RAM: 2GB
+
+    footer
+      p Copyright (C) 2024~ Studio Moremi. 스튜디오 모레미 모든 권리 보유.
