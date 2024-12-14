@@ -4,6 +4,7 @@ html
     link(rel="stylesheet" href="/css/game.css")
     script(src='https://cdn.jsdelivr.net/npm/chart.js')
     script(src='/js/chart.js')
+    script(src='/js/chat.js')
 
   body
     #game-container
@@ -16,7 +17,7 @@ html
           h2 접속 중인 멤버
           ul#members
             each member in members
-              li #{member.nickname}
+              li.member(data-id=member.id) #{member.nickname}
 
         #room-info
           h2 방 정보
@@ -25,15 +26,25 @@ html
           p 마일리지: #{user.mileage}
           p 현재 방: #{user.current_room || '없음'}
 
-          // 사용자 ID 숨겨서 전달
-          span#user-id(data-user-id=user.id)
+          span#user-id.hidden(data-user-id=user.id)
 
-          // 그래프와 전환 버튼
           h3 그래프
           button#toggle-chart 패률 그래프 보기
           canvas#chart(width='400' height='200')
 
-      button#btn-create-room 방 만들기
+        button#btn-create-room 방 만들기
+
+        #chat-container
+          h2 채팅
+          #chat-box
+            each message in messages
+              .chat-message
+                span.chat-nickname(data-id=message.userId) #{message.nickname}:
+                span.chat-content #{message.content}
+
+          form#chat-form
+            input#chat-input(type="text" placeholder="메시지를 입력하세요" required)
+            button#chat-send(type="submit") 전송
 
     #create-room-modal.hidden
       h2 방 만들기
@@ -47,13 +58,16 @@ html
         label(for='room-password') 방 비밀번호 (선택):
         input#room-password(type='password')
 
-        label
-          input#manner-mode(type='checkbox')
-          | 매너 모드 (한방단어 불가)
+        div#room-options
+          label
+            input#manner-mode(type='checkbox')
+            | 매너 모드 (한방단어 불가)
 
-        label
-          input#mission-mode(type='checkbox')
-          | 미션 모드 (특정 글자 포함 시 점수 추가)
+          label
+            input#mission-mode(type='checkbox')
+            | 미션 모드 (특정 글자 포함 시 점수 추가)
 
-        button(type='submit') 만들기
-        button#cancel(type='button') 취소
+        div#room-buttons
+          button(type='submit') 만들기
+          button#cancel(type='button') 취소
+
