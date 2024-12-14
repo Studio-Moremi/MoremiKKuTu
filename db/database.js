@@ -55,4 +55,4 @@ async function getChartData(userId) {
   return { labels, winRates, loseRates };
 }
 
-module.exports = db;
+module.exports = database;

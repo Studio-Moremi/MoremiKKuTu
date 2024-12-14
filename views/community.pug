@@ -1,0 +1,36 @@
+html
+  head
+    title 커뮤니티
+    link(rel="stylesheet" href="/styles/in_game_kkutu.css")
+    script(src="/js/community.js")
+
+  body
+    #community-container
+      h2 커뮤니티
+      p 접속한 친구 #{friends.length} / 45
+
+      ul#friend-list
+        each friend in friends
+          li
+            img.profile-picture(src=friend.profilePicture alt="프로필")
+            span.name= friend.nickname
+            span.status(class=friend.status)= friend.status
+
+      h3 초대 요청
+      each invite in invites
+        .invite-box
+          img.profile-picture(src=invite.from.profilePicture alt="프로필")
+          span= `${invite.from.nickname} 님의 ${invite.type} 초대를 받았습니다.`
+          button.accept(data-invite-id=invite.id) 수락
+          button.reject(data-invite-id=invite.id) 거절
+
+      h3 채팅
+      #chat-box
+        each message in messages
+          .chat-message
+            strong= message.from
+            span= message.text
+
+      form#chat-form
+        input#chat-input(type="text" placeholder="메시지를 입력하세요" required)
+        button#send-btn 전송
