@@ -6,6 +6,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  async function fetchUserLevel() {
+    try {
+      const response = await fetch('/api/user/level');
+      if (response.ok) {
+        const { level } = await response.json();
+        return level;
+      }
+      return 1;
+    } catch (error) {
+      console.error('Error fetching user level:', error);
+      return 1;
+    }
+  }
+
+  async function updateUI() {
+    const level = await fetchUserLevel();
+
+    loginButton.textContent = '닉네임';
+    loginButton.href = '#';
+    loginButton.classList.add('nickname-button');
+
+    levelDisplay.textContent = `Lv.${level}`;
+    levelDisplay.classList.remove('hidden');
+  }
+
+  if (loginButton) {
+    loginButton.addEventListener('click', async () => {
+      await updateUI();
+    });
+  }
+
   const startGameButton = document.getElementById('start-game-button');
   if (startGameButton) {
     startGameButton.addEventListener('click', function() {
@@ -64,4 +95,5 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   setTimeout(showNicknameModal, 1000);
+  await updateUI();
 });

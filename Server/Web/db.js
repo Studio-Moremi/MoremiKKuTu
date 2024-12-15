@@ -16,6 +16,20 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
+module.exports = {
+  /**
+   * 레벨 가져오기
+   * @param {string} userId
+   * @returns {Promise<number>} 레벨 반환
+   */
+  async getUserLevel(userId) {
+    const [rows] = await pool.query('SELECT level FROM users WHERE discord_id = ?', [userId]);
+    if (rows.length === 0) {
+      return 1;
+    }
+    return rows[0].level;
+  }
+}
 async function saveNickname(userId, nickname) {
   try {
     const query = `
@@ -46,4 +60,5 @@ module.exports = {
   pool,
   saveNickname,
   isNicknameAvailable,
+  getUserLevel,
 };
