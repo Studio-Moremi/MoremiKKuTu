@@ -1,8 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
   const loginButton = document.getElementById('login-button');
+  const levelDisplay = document.getElementById('level-display');
+  const nicknameDisplay = document.getElementById('nickname-display');
+
   if (loginButton) {
     loginButton.addEventListener('click', function(event) {
-      window.location.href = '/login/discord';
+      if (loginButton.textContent === '닉네임') {
+        window.location.href = '/login/discord';
+      } else {
+        window.location.href = '/login/discord';
+      }
     });
   }
 
@@ -29,12 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     levelDisplay.textContent = `Lv.${level}`;
     levelDisplay.classList.remove('hidden');
-  }
 
-  if (loginButton) {
-    loginButton.addEventListener('click', async () => {
-      await updateUI();
-    });
+    nicknameDisplay.textContent = loginButton.textContent;
+    nicknameDisplay.classList.remove('hidden');
   }
 
   const startGameButton = document.getElementById('start-game-button');
@@ -60,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const nicknameModal = document.getElementById('nickname-modal');
   const nicknameForm = document.getElementById('nickname-form');
-  const loginButtonText = document.getElementById('login-button');
 
   if (nicknameForm) {
     nicknameForm.addEventListener('submit', function(event) {
@@ -74,19 +77,18 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-
-      if (loginButtonText) {
-        loginButtonText.textContent = nickname;
-        alert('닉네임이 설정되었습니다!');
-        nicknameModal.classList.add('hidden'); // 모달 숨기기
-      }
+      loginButton.textContent = nickname;
+      alert('닉네임이 설정되었습니다!');
+      nicknameModal.classList.add('hidden');
+      updateUI();
     });
   }
 
-  if (loginButtonText && loginButtonText.textContent === '로그인') {
-    loginButtonText.addEventListener('click', function() {
+  if (loginButton && loginButton.textContent === '로그인') {
+    loginButton.addEventListener('click', function() {
       alert('로그아웃 하시겠어요?');
-      loginButtonText.textContent = '로그인';
+      loginButton.textContent = '로그인';
+      updateUI();
     });
   }
 
@@ -95,5 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   setTimeout(showNicknameModal, 1000);
-  await updateUI();
+
+  updateUI();
 });

@@ -4,3 +4,7 @@ npm install ws
 npm install tailwindcss
 npm install postcss
 npm install autoprefixer
+npm install mysql2
+npm install passport
+npm install passport-discord
+npm install cookie-session
