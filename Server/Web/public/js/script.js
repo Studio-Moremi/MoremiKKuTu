@@ -1,14 +1,28 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const loginButton = document.getElementById('login-button');
   const levelDisplay = document.getElementById('level-display');
   const nicknameDisplay = document.getElementById('nickname-display');
+  const nicknameModal = document.getElementById('nickname-modal');
+  const nicknameInput = document.getElementById('nickname-input');
+  const nicknameConfirm = document.getElementById('nickname-confirm');
+  const warningModal = document.getElementById('warning-modal');
+  const warningMessage = document.getElementById('warning-message');
+  const warningCancel = document.getElementById('warning-cancel');
+  const warningConfirm = document.getElementById('warning-confirm');
+
+  let nickname = '';
 
   if (loginButton) {
-    loginButton.addEventListener('click', function(event) {
-      if (loginButton.textContent === '닉네임') {
+    loginButton.addEventListener('click', function (event) {
+      if (loginButton.textContent === '로그인') {
         window.location.href = '/login/discord';
       } else {
-        window.location.href = '/login/discord';
+        if (confirm('로그아웃 하시겠어요?')) {
+          console.log('로그아웃 처리');
+          loginButton.textContent = '로그인';
+          nicknameDisplay.classList.add('hidden');
+          levelDisplay.classList.add('hidden');
+        }
       }
     });
   }
@@ -30,73 +44,65 @@ document.addEventListener('DOMContentLoaded', function() {
   async function updateUI() {
     const level = await fetchUserLevel();
 
-    loginButton.textContent = '닉네임';
-    loginButton.href = '#';
-    loginButton.classList.add('nickname-button');
-
     levelDisplay.textContent = `Lv.${level}`;
     levelDisplay.classList.remove('hidden');
-
-    nicknameDisplay.textContent = loginButton.textContent;
+    nicknameDisplay.textContent = nickname || '닉네임 비설정';
     nicknameDisplay.classList.remove('hidden');
-  }
 
-  const startGameButton = document.getElementById('start-game-button');
-  if (startGameButton) {
-    startGameButton.addEventListener('click', function() {
-      alert('공사 중입니다!');
-    });
-  }
-
-  const specButton = document.getElementById('spec-button');
-  if (specButton) {
-    specButton.addEventListener('click', function() {
-      alert('공사 중입니다!');
-    });
-  }
-
-  const clientButton = document.getElementById('client-button');
-  if (clientButton) {
-    clientButton.addEventListener('click', function() {
-      alert('공사 중입니다!');
-    });
-  }
-
-  const nicknameModal = document.getElementById('nickname-modal');
-  const nicknameForm = document.getElementById('nickname-form');
-
-  if (nicknameForm) {
-    nicknameForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const nicknameInput = nicknameForm.querySelector('input[name="nickname"]');
-      const nickname = nicknameInput.value.trim();
-
-      if (nickname.length === 0 || nickname.length > 10) {
-        alert('닉네임은 1~10자 사이여야 합니다.');
-        return;
-      }
-
-      loginButton.textContent = nickname;
-      alert('닉네임이 설정되었습니다!');
-      nicknameModal.classList.add('hidden');
-      updateUI();
-    });
-  }
-
-  if (loginButton && loginButton.textContent === '로그인') {
-    loginButton.addEventListener('click', function() {
-      alert('로그아웃 하시겠어요?');
-      loginButton.textContent = '로그인';
-      updateUI();
-    });
+    console.log(`${nickname || 'Anonymous'} has joined!`);
   }
 
   const showNicknameModal = () => {
     nicknameModal.classList.remove('hidden');
+  };
+
+  nicknameConfirm.addEventListener('click', function () {
+    const inputValue = nicknameInput.value.trim();
+
+    if (inputValue.length === 0 || inputValue.length > 10) {
+      alert('닉네임은 1~10자 사이여야 합니다.');
+      return;
+    }
+
+    warningMessage.textContent = `정말 "${inputValue}"으로 설정하실 건가요?`;
+    nicknameModal.classList.add('hidden'); // 닉네임 모달 닫기
+    warningModal.classList.remove('hidden');
+    nickname = inputValue;
+  });
+
+  warningCancel.addEventListener('click', function () {
+    warningModal.classList.add('hidden');
+    nicknameModal.classList.remove('hidden');
+  });
+
+  warningConfirm.addEventListener('click', function () {
+    warningModal.classList.add('hidden');
+    loginButton.textContent = nickname;
+    updateUI();
+  });
+
+  const startGameButton = document.getElementById('start-game-button');
+  const specButton = document.getElementById('spec-button');
+  const clientButton = document.getElementById('client-button');
+
+  if (startGameButton) {
+    startGameButton.addEventListener('click', function () {
+      alert('공사 중입니다!');
+    });
+  }
+
+  if (specButton) {
+    specButton.addEventListener('click', function () {
+      alert('공사 중입니다!');
+    });
+  }
+
+  if (clientButton) {
+    clientButton.addEventListener('click', function () {
+      alert('공사 중입니다!');
+    });
   }
 
   setTimeout(showNicknameModal, 1000);
-
   updateUI();
 });
