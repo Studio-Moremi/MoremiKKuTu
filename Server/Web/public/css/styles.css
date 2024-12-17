@@ -1,226 +1,126 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f7fafc;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-gray-100 text-gray-800 m-0 p-0;
+  }
+  header {
+    @apply bg-white shadow-md border-b-2 border-gray-200;
+  }
+  a {
+    @apply text-gray-700 hover:text-blue-500 font-bold transition-colors duration-200;
+  }
 }
 
-header {
-  background-color: #ffffff;
-  color: black;
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #ccc;
+@layer components {
+  .navbar {
+    @apply flex justify-between items-center px-6 py-4;
+  }
+
+  .navbar-left a,
+  .navbar-center a,
+  .navbar-right a {
+    @apply text-gray-800 font-semibold hover:text-blue-600;
+  }
+
+  .navbar-right span {
+    @apply mr-4 text-gray-600;
+  }
 }
 
-.navbar-left a,
-.navbar-center a,
-.navbar-right a {
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
+@layer components {
+  .event-area {
+    @apply w-full relative bg-blue-50 py-6 text-center;
+  }
+
+  .event-area img {
+    @apply w-4/5 max-w-screen-lg mx-auto rounded-lg shadow-lg transition-transform duration-300 hover:scale-105;
+  }
+
+  .event-arrow {
+    @apply absolute top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center cursor-pointer shadow-md hover:bg-blue-600;
+  }
+
+  .event-arrow.left {
+    @apply left-6;
+  }
+
+  .event-arrow.right {
+    @apply right-6;
+  }
 }
 
-.navbar-right {
-  display: flex;
-  align-items: center;
+@layer components {
+  .announcement {
+    @apply bg-white rounded-lg shadow-md p-6 mb-8;
+  }
+
+  .announcement h2 {
+    @apply text-xl font-bold text-gray-700 mb-4 border-b pb-2 border-gray-200;
+  }
+
+  .announcement-iframe {
+    @apply w-full h-60 rounded-lg shadow-sm border border-gray-300;
+  }
+
+  .game-start-box {
+    @apply flex flex-col items-center space-y-4;
+  }
+
+  .game-button {
+    @apply w-full bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-600 transition-all duration-200;
+  }
+
+  .info-button {
+    @apply bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-md hover:bg-gray-300 transition-all duration-200;
+  }
 }
 
-.navbar-right span {
-  margin-right: 16px;
+@layer components {
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm;
+  }
+
+  .modal-content {
+    @apply bg-white rounded-lg shadow-lg p-6 w-2/5 transform transition-all duration-300;
+  }
+
+  .modal-header {
+    @apply text-2xl font-bold text-green-600 mb-4;
+  }
+
+  .modal-body {
+    @apply text-gray-600 mb-4 text-sm;
+  }
+
+  .modal-input {
+    @apply w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-green-500;
+  }
+
+  .modal-button {
+    @apply bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-all duration-200;
+  }
 }
 
-.navbar-left a:hover,
-.navbar-center a:hover,
-.navbar-right a:hover {
-  color: #3182ce;
+@layer utilities {
+  .button-press-effect {
+    @apply transition-transform duration-100 active:scale-95 shadow-md hover:shadow-lg;
+  }
 }
 
-.event-area {
-  width: 100%;
-  background-color: #eef;
-  padding: 20px 0;
-  text-align: center;
-  position: relative;
-}
+@layer utilities {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
-.event-area img {
-  width: 80%;
-  max-width: 100%;
-  height: auto;
-  display: inline-block;
-  border-radius: 8px;
-}
-
-.event-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
-  background-color: #3182ce;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.event-arrow.left {
-  left: 10px;
-}
-
-.event-arrow.right {
-  right: 10px;
-}
-
-main {
-  display: flex;
-  justify-content: space-between;
-  padding: 40px 10%;
-}
-
-.announcement {
-  width: 48%;
-  background-color: #eef;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.announcement h2 {
-  margin: 0 0 10px;
-  font-size: 1.5rem;
-}
-
-.announcement-iframe {
-  width: 100%;
-  height: 200px;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* 게임 시작 박스 */
-.game-start-box {
-  text-align: center;
-  width: 48%;
-}
-
-#start-game-button {
-  background-color: #3182ce;
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-#start-game-button:hover {
-  background-color: #2b6cb0;
-}
-
-.info-buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.info-button {
-  background-color: #edf2f7;
-  color: #2d3748;
-  border: none;
-  padding: 15px 30px;
-  font-size: 1rem;
-  border-radius: 5px;
-  width: 48%;
-  cursor: pointer;
-}
-
-.info-button:hover {
-  background-color: #e2e8f0;
-}
-
-#nickname-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
-}
-
-#nickname-modal .bg-white {
-  width: 33%;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#nickname-modal h2 {
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-#nickname-modal p {
-  font-size: 0.875rem;
-  color: #718096;
-  margin-bottom: 10px;
-}
-
-#nickname-modal input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 15px;
-}
-
-#nickname-modal button {
-  padding: 10px 20px;
-  background-color: #48bb78;
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-
-#nickname-modal button:hover {
-  background-color: #38a169;
-}
-
-footer {
-  background-color: #2b6cb0;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
-
-.modal-open {
-  filter: blur(5px);
-  pointer-events: none;
-}
-
-#nickname-modal,
-#warning-modal {
-  backdrop-filter: blur(5px);
-}
-
-button {
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-}
-
-button:hover {
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-button:active {
-  transform: scale(0.95);
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
 }
