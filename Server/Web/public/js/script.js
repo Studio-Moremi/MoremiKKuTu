@@ -1,4 +1,3 @@
-// 외부 라이브러리 로드
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import anime from 'animejs';

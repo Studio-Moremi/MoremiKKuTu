@@ -18,7 +18,7 @@ router.post('/set-nickname', async (req, res) => {
     await saveNickname(userId, nickname);
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error(err);
+    console.error('Error in /set-nickname:', err);
     res.status(500).json({ error: '서버 오류가 발생했습니다.' });
   }
 });
