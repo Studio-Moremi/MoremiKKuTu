@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moremi - Room</title>
+  <link rel="stylesheet" href="/public/in_game_styles.css">
+  <script defer src="/public/in_game_scripts.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="user-info">Welcome, User</div>
+    <button class="menu-button" onclick="toggleSidebar()">☰</button>
+  </header>
+
+  <!-- Main Game Container -->
+  <div class="game-container">
+    <div class="members">
+      <h2>Members</h2>
+      <ul class="members-list">
+        <li>User1</li>
+        <li>User2</li>
+      </ul>
+    </div>
+    <div class="chat">
+      <h2>Chat</h2>
+      <div class="chat-messages">
+        <div class="chat-message">User1: Hello!</div>
+        <div class="chat-message">User2: Hi!</div>
+        <div class="system-message">User1 joined the room.</div>
+      </div>
+      <input type="text" class="chat-input" placeholder="Type a message...">
+    </div>
+  </div>
+
+  <!-- Room Creation Button -->
+  <div style="text-align: center; margin-top: 20px;">
+    <button onclick="openRoomModal()" style="padding: 10px 20px; font-size: 1rem; cursor: pointer;">
+      방 만들기
+    </button>
+  </div>
+
+  <!-- Room Creation Modal -->
+  <div id="roomModal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        방 만들기
+      </div>
+      <div class="modal-body">
+        <label for="roomName">방 이름</label>
+        <input type="text" id="roomName" placeholder="방 이름을 입력하세요">
+        <label for="rounds">라운드 수</label>
+        <input type="number" id="rounds" placeholder="라운드 수를 입력하세요">
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeRoomModal()">취소</button>
+        <button class="btn-confirm" onclick="createRoom()">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar hidden">
+    <button class="close-sidebar" onclick="toggleSidebar()">×</button>
+    <p>Sidebar Content</p>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+</body>
+</html>
