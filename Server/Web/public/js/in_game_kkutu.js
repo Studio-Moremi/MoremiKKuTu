@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <button class="menu-button">☰</button>
       </header>
       <main class="game-container">
+        <button class="create-room-button">방 생성</button>
         <section class="members">
           <h2>멤버 - 0명</h2>
           <ul class="members-list"></ul>
@@ -70,12 +71,23 @@ document.addEventListener('DOMContentLoaded', () => {
         <button class="whitemode-toggle">화이트모드</button>
         <button class="help-button">도움말</button>
       </div>
-      <div class="tooltip hidden">도움말 텍스트가 여기에 표시됩니다.</div>`;
+      <div class="tooltip hidden">도움말 텍스트가 여기에 표시됩니다.</div>
+      <div class="room-modal hidden">
+        <div class="modal-content">
+          <h2>방 생성</h2>
+          <label>방 이름:</label>
+          <input type="text" id="room-name" />
+          <label>라운드 수:</label>
+          <input type="number" id="rounds" min="1" />
+          <button class="confirm-room-button">확인</button>
+          <button class="close-room-modal">닫기</button>
+        </div>
+      </div>`;
 
     attachGameEvents();
     attachSidebarEvents();
     attachModeToggleEvents();
-    setupTooltip();
+    setupRoomModal();
   }
 
   function attachGameEvents() {
@@ -104,8 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.querySelector('.sidebar');
     const closeSidebar = document.querySelector('.close-sidebar');
     const logoutButton = document.querySelector('.logout');
-    const helpButton = document.querySelector('.help-button');
-    const tooltip = document.querySelector('.tooltip');
 
     menuButton.addEventListener('click', () => {
       sidebar.classList.remove('hidden');
@@ -118,10 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
     logoutButton.addEventListener('click', () => {
       alert('로그아웃됩니다.');
       window.location.href = '/';
-    });
-
-    helpButton.addEventListener('click', () => {
-      tooltip.classList.toggle('hidden');
     });
   }
 
@@ -140,31 +146,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function setupTooltip() {
-    const tooltip = document.querySelector('.tooltip');
-    tooltip.innerHTML = '게임 사용법에 대한 간단한 안내문이 여기에 표시됩니다.';
-  }
+  function setupRoomModal() {
+    const createRoomButton = document.querySelector('.create-room-button');
+    const roomModal = document.querySelector('.room-modal');
+    const closeRoomModal = document.querySelector('.close-room-modal');
+    const confirmRoomButton = document.querySelector('.confirm-room-button');
 
-  const style = document.createElement('style');
-  style.textContent = `
-    body.dark-mode { background-color: #121212; color: #ffffff; }
-    body.light-mode { background-color: #ffffff; color: #000000; }
-    .hidden { display: none; }
-    .loading-container { text-align: center; font-size: 20px; }
-    .loading-bar { width: 80%; height: 10px; background-color: #e0e0e0; margin: 20px auto; }
-    .progress { height: 100%; width: 0; background-color: #76c7c0; }
-    .welcome-screen { text-align: center; font-size: 30px; color: green; }
-    .game-container { display: flex; justify-content: space-between; }
-    .members, .chat { width: 48%; }
-    .chat-messages { max-height: 200px; overflow-y: auto; background-color: #f4f4f4; padding: 10px; }
-    .chat-message { margin: 5px 0; }
-    .system-message { font-size: 14px; color: #888; }
-    .user-info { font-size: 18px; }
-    .menu-button { font-size: 30px; cursor: pointer; }
-    .sidebar { position: fixed; top: 0; right: 0; width: 200px; height: 100%; background-color: rgba(0, 0, 0, 0.7); color: white; display: flex; flex-direction: column; padding: 10px; }
-    .sidebar button { margin: 10px 0; padding: 10px; background-color: #444; border: none; color: white; cursor: pointer; }
-    .sidebar button:hover { background-color: #555; }
-    .tooltip { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.7); color: white; padding: 20px; border-radius: 5px; max-width: 300px; }
-  `;
-  document.head.appendChild(style);
+    createRoomButton.addEventListener('click', () => {
+      roomModal.classList.remove('hidden');
+    });
+
+    closeRoomModal.addEventListener('click', () => {
+      roomModal.classList.add('hidden');
+    });
+
+    confirmRoomButton.addEventListener('click', () => {
+      const roomName = document.getElementById('room-name').value.trim();
+      const rounds = parseInt(document.getElementById('rounds').value);
+
+      if (!roomName || isNaN(rounds) || rounds <= 0) {
+        alert('올바른 정보를 입력하세요.');
+        return;
+      }
+
+      alert(`방이 생성되었습니다: ${roomName} (${rounds} 라운드)`);
+      roomModal.classList.add('hidden');
+    });
+  }
 });
